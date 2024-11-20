@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "/proto;proto";
+
+service EmployeeService {
+  rpc AddEmployee(AddEmployeeRequest) returns (AddEmployeeResponse) {}
+  rpc DeleteEmployee(DeleteEmployeeRequest) returns (DeleteEmployeeResponse) {}
+  rpc ShowCompanyEmployees(CompanyEmployeesRequest) returns (EmployeesResponse) {}
+  rpc UpdateEmployee(UpdateEmployeeRequest) returns (UpdateEmployeeResponse) {}
+}
+
+message Employee {
+  int32 id = 1;
+  string name = 2;
+  string surname = 3;
+  string phone = 4;
+  int32 company_id = 5;
+  Passport passport = 6;
+  Department department = 7;
+  message Passport {
+    string type = 1;
+    string number = 2;
+  }
+  message Department {
+    string name = 1;
+    string phone = 2;
+  }
+}
+
+message AddEmployeeRequest {
+  string name = 1;
+  string surname = 2;
+  string phone = 3;
+  int32 company_id = 4;
+  Employee.Passport passport = 5;
+  Employee.Department department = 6;
+}
+
+message AddEmployeeResponse {
+  int32 id = 1;
+}
+
+message DeleteEmployeeRequest {
+  int32 id = 1;
+}
+
+message DeleteEmployeeResponse {
+  string success = 1;
+}
+
+message CompanyEmployeesRequest {
+  int32 company_id = 1;
+  Employee.Department department = 2;
+}
+
+message EmployeesResponse {
+  repeated Employee employees = 1;
+}
+
+message UpdateEmployeeRequest {
+  int32 id = 1;
+  string name = 2;
+  string surname = 3;
+  string phone = 4;
+  int32 company_id = 5;
+  Employee.Passport passport = 6;
+  Employee.Department department = 7;
+}
+
+message UpdateEmployeeResponse {
+  string success = 1;
+}
