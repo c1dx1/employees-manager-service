@@ -58,3 +58,6 @@ VALUES ('John', 'Doe', '555-1234', 1, 1, 1),
        ('Clark', 'Kent', '555-3457', 4, 8, 8),
        ('Peter', 'Parker', '555-5679', 5, 9, 9),
        ('Tony', 'Stark', '555-7891', 5, 10, 10);
+
+CREATE INDEX idx_employees_department_id ON employees(department_id);
+CREATE INDEX idx_employees_passport_id ON employees(passport_id);
